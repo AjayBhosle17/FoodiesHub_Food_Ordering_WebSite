@@ -28,6 +28,8 @@ namespace Data.Entities
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedDate { get; set; }
+
+
   
     }
 
