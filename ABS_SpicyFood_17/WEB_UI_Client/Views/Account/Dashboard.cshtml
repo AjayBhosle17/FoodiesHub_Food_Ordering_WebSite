@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block bg-dark sidebar shadow-lg">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" asp-controller="Dashboard" asp-action="Index">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Category" asp-action="Index">
+                            <i class="fas fa-list"></i> Manage Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Product" asp-action="Index">
+                            <i class="fas fa-utensils"></i> Manage Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4  main-content">
+            <div class="dashboard-header bg-light p-3 shadow-sm mb-4 demo">
+                <h2 class="mb-0">Welcome, Admin</h2>
+                <p>Manage Categories, Products, and Orders from here.</p>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="row">
+    <!-- Scrollable Content Wrapper -->
+    <div class="col-12 mt-5" style="height: 500px; overflow-y: auto;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Categories</h5>
+                        <p class="card-text">Manage all categories here.</p>
+                        <a asp-controller="Category" asp-action="Index" class="btn btn-primary">
+                            <i class="fas fa-list"></i> View Categories
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Products</h5>
+                        <p class="card-text">Manage all food items.</p>
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-success">
+                            <i class="fas fa-utensils"></i> View Products
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row (With Top Margin) -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Row (With Top Margin) -->
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text">View and manage orders.</p>
+                        <a asp-controller="Order" asp-action="Index" class="btn btn-warning">
+                            <i class="fas fa-receipt"></i> View Orders
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+    </div>
+</div>

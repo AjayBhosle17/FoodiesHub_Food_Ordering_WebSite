@@ -1,3 +1,4 @@
+using BAL.AllDependecyRegister;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,10 @@ namespace WEB_UI_Client
             options.UseSqlServer(builder.Configuration.GetConnectionString("ABSFood")));
 
 
+            //Here all dependency register
+
+            AllDependencyRegister.DependecyRegister(builder.Services);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,7 +42,7 @@ namespace WEB_UI_Client
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Category}/{action=Index}/{id?}");
 
             app.Run();
         }

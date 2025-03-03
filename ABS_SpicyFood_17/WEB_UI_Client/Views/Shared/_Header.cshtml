@@ -1,0 +1,81 @@
+﻿<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+        <div class="container-fluid">
+            <!-- Left: Logo and Name -->
+            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/Images/logo.jpg" alt="ABS Foodie" width="40" height="40" class="me-2">
+                <span class="fw-bold text-light">ABS Foodie</span>
+            </a>
+
+            <!-- Navbar Toggler for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Left: Main Navigation Links -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Cart" asp-action="Index">
+                            <i class="fas fa-shopping-cart"></i> Cart <span class="badge bg-danger">3</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-light dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">All Categories</a></li>
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Electronics">Electronics</a></li>
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Fashion">Fashion</a></li>
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Books">Books</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" asp-controller="Category" asp-action="NewCategory">Add New Category</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Center: Search Bar -->
+                <form class="d-flex mx-auto">
+                    <input class="form-control me-2 bg-light text-dark" type="search" placeholder="Search food Bete..." aria-label="Search" style="width: 300px;">
+                </form>
+
+                <!-- Right: Authentication & Profile -->
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light mx-2" asp-controller="Account" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning" asp-controller="Account" asp-action="Register">Register</a>
+                    </li>
+
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="Setting"><i class="fas fa-cog me-2"></i> Setting</a></li>
+                            <li><a class="dropdown-item" asp-controller="Account" asp-action="EditProfile"><i class="fas fa-user-edit me-1"></i> Edit Profile</a></li>
+                            <li><a class="dropdown-item text-dark" asp-controller="Account" asp-action="Dashboard"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+                            <li><a class="dropdown-item text-dark" asp-controller="Account" asp-action="Orders"><i class="fas fa-box me-2"></i> My Orders</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
