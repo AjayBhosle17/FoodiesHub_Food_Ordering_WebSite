@@ -1,65 +1,128 @@
 ﻿@model IEnumerable<DTO.CategoryModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categories";
 }
 
-<h1>Index</h1>
+<style>
+   /*  body {
+        background: url('/images/categorybg/categoryall.jpg') no-repeat center center fixed;
+        background-size: cover;
+    } */
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    .container{
+
+        margin-top:70px;
+    }
+
+    .table-container {
+        background: rgba(0, 0, 0, 0.7); /* Dark Glass Effect */
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .category-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid white;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .category-img:hover {
+            transform: scale(1.1);
+        }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        color: white;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    h1 {
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .badge {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 style="">Category Management</h1>
+    <p class="text-center">
+        <a asp-action="Create" class="btn btn-success btn-lg">➕ Create New Category</a>
+    </p>
+
+    <div class="table-responsive table-container">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CategoryId</td>
+
+                        <td>
+                            <a asp-action="Index" asp-controller="Product" asp-route-categoryId="@item.CategoryId" class="text-info fw-bold">
+                                @item.Name
+                            </a>
+                        </td>
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" alt="Category Image" class="category-img" />
+                            }
+                            else
+                            {
+                                <span class="text-warning">No Image</span>
+                            }
+                        </td>
+
+                        <td>
+                            <span class="badge @(item.IsActive ? "bg-success" : "bg-danger")">
+                                @(item.IsActive ? "Active ✅" : "Inactive ❌")
+                            </span>
+                        </td>
+
+                        <td>@item.CreatedDate.ToString("yyyy-MM-dd")</td>
+
+                        <td>@(item.UpdatedDate?.ToString("yyyy-MM-dd") ?? "Not Updated")</td>
+
+                        <td>
+                            <div class="btn-group">
+                                <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-warning btn-sm">✏ Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-info btn-sm">ℹ Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger btn-sm">🗑 Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

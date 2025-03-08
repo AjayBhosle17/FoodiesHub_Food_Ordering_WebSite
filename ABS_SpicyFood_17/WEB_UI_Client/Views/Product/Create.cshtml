@@ -1,0 +1,165 @@
+﻿@model DTO.ProductModel
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-control, .form-select {
+            border-radius: 20px;
+            border: none;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border: 2px solid #ff7e5f;
+                box-shadow: 0 0 10px rgba(255, 126, 95, 0.5);
+            }
+
+        .btn-custom {
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 12px;
+            transition: 0.3s;
+            width: 48%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(90deg, #ff4b2b, #ff416c);
+            }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+        .form-control[type="file"] {
+            width: 100%; /* Ensures the input takes full width */
+        }
+
+            /* .ab{ */
+            /*     width:100px; */
+            /* } */
+    </style>
+}
+
+<div class="container">
+    <div class="form-container">
+        <h2 class="text-center mb-3"> Create Product</h2>
+        <hr class="bg-white" />
+
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3"></div>
+
+            <div class="row">
+                <!-- Column 1 -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Product Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" placeholder="Enter product description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select asp-for="CategoryId" class="form-select">
+                            <option value="">Select a category</option>
+                            @* Populate categories dynamically *@
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Quantity" class="form-label">Quantity</label>
+                        <input asp-for="Quantity" type="number" class="form-control" placeholder="Enter quantity" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+
+                   
+                </div>
+
+                <!-- Column 3 -->
+                <!-- Column 3 -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label class="form-label">Upload Product Images</label>
+                        <input type="file" name="images" class="form-control w-100" multiple />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label">Price</label>
+                        <input asp-for="Price" type="number" class="form-control" placeholder="Enter price" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-custom">Create</button>
+                <a asp-action="Index" class="btn btn-secondary btn-custom">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

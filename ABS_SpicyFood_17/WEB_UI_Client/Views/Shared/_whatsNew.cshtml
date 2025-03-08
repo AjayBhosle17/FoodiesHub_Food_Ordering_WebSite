@@ -1,0 +1,125 @@
+﻿<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<style>
+    body {
+        padding-bottom: 80px; 
+        font-family: Arial, sans-serif;
+    }
+
+    .fixed-menu {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-around;
+        align-items: center; 
+        padding: 10px 0;
+    }
+
+        .fixed-menu div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px; 
+        }
+
+       
+        .fixed-menu a {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
+    .whats-new {
+        
+        padding: 20px 20px;
+        margin-top:-40px;
+        
+    }
+
+    .new-items-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px;
+        scroll-behavior: smooth;
+        scrollbar-width: none; 
+    }
+
+        .new-items-container::-webkit-scrollbar {
+            display: none;
+        }
+
+    .new-item-card {
+        flex: 0 0 auto;
+        width: 260px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        background-color: #fff;
+    }
+
+        .new-item-card img {
+            width: 100%;
+            height: auto;
+        }
+
+    .order-now {
+        background-color: red;
+        color: white;
+        padding: 10px;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+        .order-now:hover {
+            background-color: darkred;
+        }
+</style>
+
+<section class="whats-new">
+    <h2><strong>What’s New</strong></h2>
+    <div class="new-items-container">
+        <div class="new-item-card">
+            <img src="/images/whatsNew/1_card.jpg" alt="750 OFF">
+            <button class="order-now">Order Now</button>
+        </div>
+        <div class="new-item-card">
+            <img src="/images/whatsNew/2_card.jpg" alt="Cheese Burst">
+            <button class="order-now">Order Now</button>
+        </div>
+        <div class="new-item-card">
+            <img src="/images/whatsNew/3_card.jpg" alt="Cheese Volcano">
+            <button class="order-now">Order Now</button>
+        </div>
+        <div class="new-item-card">
+            <img src="/images/whatsNew/4_card.jpg" alt="Lavalicious">
+            <button class="order-now">Order Now</button>
+        </div>
+    </div>
+</section>
+
+
+<div class="fixed-menu">
+    <div>
+        <i class="fas fa-bars"></i>
+        <a href="#">Menu</a>
+    </div>
+    <div>
+        <i class="fas fa-tags"></i>
+        <a href="#">Offers</a>
+    </div>
+    <div>
+        <i class="fas fa-shopping-cart"></i>
+        <a href="#">Cart</a>
+    </div>
+</div>
+

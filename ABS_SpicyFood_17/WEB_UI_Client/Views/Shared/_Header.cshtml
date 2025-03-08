@@ -30,20 +30,15 @@
                             <i class="fas fa-shopping-cart"></i> Cart <span class="badge bg-danger">3</span>
                         </a>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-light dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Index">All Categories</a></li>
-                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Electronics">Electronics</a></li>
-                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Fashion">Fashion</a></li>
-                            <li><a class="dropdown-item" asp-controller="Category" asp-action="Books">Books</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" asp-controller="Category" asp-action="NewCategory">Add New Category</a></li>
-                        </ul>
+                     <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                    </li>
+
+                   
+                  
                 </ul>
 
                 <!-- Center: Search Bar -->

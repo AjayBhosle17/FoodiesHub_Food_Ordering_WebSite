@@ -1,4 +1,6 @@
 ﻿using BAL.AutoMapper;
+using InfraStructure.Implementation;
+using InfraStructure.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Service.Implementation;
 using Service.Interface;
@@ -16,6 +18,9 @@ namespace BAL.AllDependecyRegister
             //add automapper dependecy
 
             services.AddAutoMapper(typeof(MyMapperProfile));
+
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
         }
     }

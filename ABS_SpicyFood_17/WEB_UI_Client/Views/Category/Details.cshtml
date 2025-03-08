@@ -1,0 +1,92 @@
+﻿@model DTO.CategoryModel
+
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<style>
+    body {
+        background: url('/images/categorybg/categorydetails.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .details-container {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        color: white;
+    }
+
+    .category-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid white;
+    }
+
+    .badge {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 40px;
+    }
+
+    .btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1>Category Details</h1>
+
+    <div class="details-container">
+        <h4>@Model.Name</h4>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-3">Category ID</dt>
+            <dd class="col-sm-9">@Model.CategoryId</dd>
+
+            <dt class="col-sm-3">Category Name</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">Image</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" alt="Category Image" class="category-img" />
+                }
+                else
+                {
+                    <span>No Image Available</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">
+                <span class="badge @(Model.IsActive ? "bg-success" : "bg-danger")">
+                    @(Model.IsActive ? "Active" : "Inactive")
+                </span>
+            </dd>
+
+            <dt class="col-sm-3">Created Date</dt>
+            <dd class="col-sm-9">@Model.CreatedDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-3">Updated Date</dt>
+            <dd class="col-sm-9">@(Model.UpdatedDate?.ToString("yyyy-MM-dd") ?? "Not Updated")</dd>
+        </dl>
+    </div>
+
+    <div class="btn-container">
+        <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-light">Back to List</a>
+    </div>
+</div>

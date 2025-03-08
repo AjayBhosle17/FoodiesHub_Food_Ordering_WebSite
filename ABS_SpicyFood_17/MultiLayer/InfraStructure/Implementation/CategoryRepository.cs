@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 public class CategoryRepository : ICategoryRepository
 {
@@ -28,10 +29,22 @@ public class CategoryRepository : ICategoryRepository
 
     public void Edit(Category category)
     {
-        _context.Categories.Attach(category);
-        _context.Entry(category).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        _context.SaveChanges();
+        var existingCategory = _context.Categories.Find(category.CategoryId);
+
+        if (existingCategory != null)
+        {
+            existingCategory.CategoryId = category.CategoryId;
+            existingCategory.CreatedDate = category.CreatedDate;
+            existingCategory.UpdatedDate = DateTime.Now;
+            existingCategory.IsActive = category.IsActive;
+            existingCategory.ImageUrl = category.ImageUrl;
+            existingCategory.Name = category.Name;
+
+           // _context.Categories.Add(existingCategory);
+            _context.SaveChanges(); 
+        }
     }
+
 
     public List<Category> GetAll()
     {
@@ -42,4 +55,9 @@ public class CategoryRepository : ICategoryRepository
     {
         return _context.Categories.Find(id);
     }
+    public IEnumerable<Category> GetAllCategoriesWithProducts()  // to fetch all products
+    {
+        return _context.Categories.Include(c => c.Products).ToList();
+    }
+
 }

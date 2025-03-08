@@ -1,8 +1,98 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<DTO.CategoryModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .category-section {
+        width: 100%;
+        padding: 20px 0;
+        margin-top: 70px;
+        background: transparent;
+        border-radius: 3px;
+        box-shadow: none;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .category-container {
+        display: flex;
+        overflow-x: auto; /* Enables horizontal scrolling */
+        white-space: nowrap;
+        gap: 15px;
+        padding: 15px;
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-width: none;
+        /* scrollbar-color: #ff9800 transparent; */
+    }
+
+        /* Scrollbar styles for WebKit browsers */
+        .category-container::-webkit-scrollbar {
+            display:none
+        }
+
+        .category-container::-webkit-scrollbar-thumb {
+            background: #ff9800;
+            border-radius: 3px;
+        }
+
+        .category-container ol {
+            display: flex;
+            list-style-type: none;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-container li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 120px;
+        }
+
+        .category-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff9800;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+            .category-container img:hover {
+                transform: scale(1.1);
+            }
+
+        .category-container p {
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            margin-top: 5px;
+            text-align: center;
+            white-space: nowrap;
+        }
+</style>
+
+<div class="category-section">
+    <h6 class="category-title" style="padding-left: 15px; font-size: 30px; font-weight: bold; color: #333;">
+        What are you craving for?
+    </h6>
+
+    <div class="category-container">
+        <ol>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <img src="@item.ImageUrl" alt="@item.Name" />
+                    <p>@item.Name</p>
+                </li>
+            }
+        </ol>
+    </div>
+
+    <partial name="_whatsnew" />
 </div>

@@ -1,58 +1,124 @@
 ﻿@model DTO.CategoryModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Category";
 }
 
-<h1>Create</h1>
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(to right, #36d1dc, #5b86e5);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
 
-<h4>CategoryModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" />
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+        .container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 14px;
+            background: linear-gradient(to right, #2b5876, #4e4376);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-control, .form-check-input {
+            border-radius: 20px;
+            border: none;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+            .form-control:focus {
+                border: 2px solid #36d1dc;
+                box-shadow: 0 0 10px rgba(54, 209, 220, 0.5);
+            }
+
+        .btn-custom {
+            border-radius: 20px;
+            font-weight: bold;
+            padding: 12px;
+            transition: 0.3s;
+            width: 48%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #36d1dc, #5b86e5);
+            border: none;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(90deg, #5b86e5, #36d1dc);
+            }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+        .form-control[type="file"] {
+            width: 100%;
+        }
+
+    </style>
+}
+
+<div class="container">
+    <div class="form-container">
+        <h2 class="text-center mb-3">Create Category</h2>
+        <hr class="bg-white" />
+
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Category Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter category name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageUrl" class="control-label"></label>
-                <input asp-for="ImageUrl" class="form-control" />
-                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
+            <div class="mb-3">
+                <label class="form-label">Upload Category Image</label>
+                <input type="file" name="ImageFile" class="form-control w-100" />
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="IsActive" />
+                <label class="form-check-label">Active Category</label>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-custom">Create</button>
+                <a asp-action="Index" class="btn btn-secondary btn-custom">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

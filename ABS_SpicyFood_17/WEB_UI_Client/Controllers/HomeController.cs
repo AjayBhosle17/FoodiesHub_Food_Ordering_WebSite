@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Service.Interface;
 using System.Diagnostics;
 using WEB_UI_Client.Models;
 
@@ -6,22 +7,20 @@ namespace WEB_UI_Client.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        ICategoryService _service;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICategoryService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var categories = _service.GetAll();
+            return View(categories);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

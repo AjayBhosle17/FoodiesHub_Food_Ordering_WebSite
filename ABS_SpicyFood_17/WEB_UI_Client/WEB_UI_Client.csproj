@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Images\ProductBG\**" />
+    <Content Remove="wwwroot\Images\ProductBG\**" />
+    <EmbeddedResource Remove="wwwroot\Images\ProductBG\**" />
+    <None Remove="wwwroot\Images\ProductBG\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
@@ -19,6 +26,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MultiLayer\DTO\DTO.csproj" />
     <ProjectReference Include="..\MultiLayer\Service\Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\CategoryImages\" />
   </ItemGroup>
 
 </Project>

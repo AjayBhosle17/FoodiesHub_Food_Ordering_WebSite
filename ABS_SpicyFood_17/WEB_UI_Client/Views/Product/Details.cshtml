@@ -1,0 +1,93 @@
+﻿@model DTO.ProductModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<style>
+    .details-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .badge-active {
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .badge-inactive {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1>Product Details</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="details-container">
+                <h4 class="text-center">@Model.Name</h4>
+                <hr />
+
+                <img src="@Model.ImageUrl" alt="Product Image" class="product-img" />
+
+                <dl class="row">
+                    <dt class="col-sm-4">ID:</dt>
+                    <dd class="col-sm-8">@Model.ProductId</dd>
+
+                    <dt class="col-sm-4">Description:</dt>
+                    <dd class="col-sm-8">@Model.Description</dd>
+
+                    <dt class="col-sm-4">Price:</dt>
+                    <dd class="col-sm-8">$@Model.Price</dd>
+
+                    <dt class="col-sm-4">Quantity:</dt>
+                    <dd class="col-sm-8">@Model.Quantity</dd>
+
+                    <dt class="col-sm-4">Category ID:</dt>
+                    <dd class="col-sm-8">@Model.CategoryId</dd>
+
+                    <dt class="col-sm-4">Status:</dt>
+                    <dd class="col-sm-8">
+                        <span class="@(Model.IsActive ? "badge-active" : "badge-inactive")">
+                            @(Model.IsActive ? "Active" : "Inactive")
+                        </span>
+                    </dd>
+
+                    <dt class="col-sm-4">Created Date:</dt>
+                    <dd class="col-sm-8">@Model.CreatedDate.ToString("yyyy-MM-dd")</dd>
+
+                    <dt class="col-sm-4">Updated Date:</dt>
+                    <dd class="col-sm-8">@(Model.UpdatedDate?.ToString("yyyy-MM-dd") ?? "Not Updated")</dd>
+                </dl>
+
+                <div class="text-center mt-4">
+                    <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

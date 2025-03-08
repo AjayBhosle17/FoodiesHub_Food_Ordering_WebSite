@@ -1,0 +1,175 @@
+﻿@model DTO.CategoryModel
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<style>
+    /* Background Setup */
+    body {
+        background: url('/images/categorybg/categoryedit.jpg') no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .edit-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 87, 51, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        color: white;
+        width: 500px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .form-control {
+        padding: 8px;
+        border-radius: 6px;
+        border: none;
+    }
+
+    .category-img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 3px solid white;
+        transition: transform 0.3s ease-in-out;
+        display: block;
+        margin: 10px auto;
+    }
+
+        .category-img:hover {
+            transform: scale(1.1);
+        }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .btn {
+        width: 45%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #28a745;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+    .btn-light {
+        background-color: #f8f9fa;
+        color: black;
+    }
+
+        .btn-light:hover {
+            background-color: #e2e6ea;
+            transform: scale(1.05);
+        }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+</style>
+
+<div class="edit-container">
+    <h1>🌟 Edit Category</h1>
+
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="hidden" asp-for="ImageUrl" id="hiddenImageUrl" />
+
+        <!-- Category Name & Choose File in One Line -->
+        <div class="row">
+            <div class="form-group" style="width: 48%;">
+                <label asp-for="Name" class="control-label">Category Name</label>
+                <input asp-for="Name" class="form-control" style="width: 100%;" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" style="width: 48%;">
+                <label class="control-label">Choose Image</label>
+                <input type="file" id="imageFile" class="form-control" name="imageFile" accept="image/*" />
+            </div>
+        </div>
+
+        <!-- Image Preview Below -->
+        <div class="form-group">
+            <img id="imagePreview" src="@Model.ImageUrl" alt="Category Image" class="category-img" />
+        </div>
+        <!-- Active Checkbox & Buttons in One Line -->
+        <div class="row">
+            <div class="form-check">
+                <input class="form-check-input" asp-for="IsActive" />
+                <label class="form-check-label">Active</label>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn btn-primary">💾 Save</button>
+                <a asp-action="Index" class="btn btn-light">❌ Cancel</a>
+                
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('imageFile').addEventListener('change', function (event) {
+            let imagePreview = document.getElementById('imagePreview');
+            let hiddenImageUrl = document.getElementById('hiddenImageUrl');
+            let file = event.target.files[0];
+
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = hiddenImageUrl.value;
+            }
+        });
+    </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

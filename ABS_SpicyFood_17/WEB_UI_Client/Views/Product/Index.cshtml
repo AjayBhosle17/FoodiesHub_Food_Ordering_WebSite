@@ -1,0 +1,157 @@
+﻿@model IEnumerable<DTO.ProductModel>
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            background: url('/images/product/productbg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            margin-top: 80px;
+        }
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .table {
+            background: transparent;
+            color: #fff;
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+
+            .table th,
+            .table td {
+                padding: 12px;
+                text-align: center;
+            }
+
+            .table th {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+            }
+
+            .table tr {
+                transition: 0.3s;
+            }
+
+                .table tr:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                    transform: scale(1.01);
+                }
+
+        .btn-custom {
+            border-radius: 20px;
+            padding: 6px 12px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            border: none;
+            color: white;
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(90deg, #feb47b, #ff7e5f);
+            }
+
+        .btn-danger {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            border: none;
+            color: white;
+        }
+
+            .btn-danger:hover {
+                background: linear-gradient(90deg, #c0392b, #e74c3c);
+            }
+
+        .product-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-md-4">
+        <h2 class="fw-bold">📦 Product List</h2>
+        <a asp-action="Create" class="btn btn-primary btn-custom">➕ Add Product</a>
+    </div>
+
+    <div class="table-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> ID</th>
+                    <th> Name</th>
+                    <th>📜 Description</th>
+                    <th>💲 Price</th>
+                    <th>🔢 Quantity</th>
+                    <th>🖼 Image</th>
+                    <th>📂 Category</th>
+                    <th>✅ Active</th>
+                    <th>📅 Created</th>
+                    <th>📝 Updated</th>
+                    <th>⚙ Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ProductId</td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>₹ @item.Price</td>
+                        <td>@item.Quantity</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" class="product-image" alt="Product Image" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No Image</span>
+                            }
+                        </td>
+                        <td>@item.CategoryId</td>
+                        <td>@(item.IsActive ? "✔" : "❌")</td>
+                        <td>@item.CreatedDate.ToString("yyyy-MM-dd")</td>
+                        <td>@item.UpdatedDate?.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-primary btn-custom">✏ Edit</a>
+                            @* <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info btn-custom">👁 View</a> *@
+                            <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger btn-custom">🗑 Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

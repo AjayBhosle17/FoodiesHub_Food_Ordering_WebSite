@@ -17,10 +17,10 @@ namespace DTO
 
         public bool IsActive { get; set; } = true;
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime? UpdatedDate { get; set; }
     }
 }
